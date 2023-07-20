@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/design/widgets/language_switcher/language_switcher_bloc.dart';
 import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
 import 'package:weather_app/features/profile/profile_screen.dart';
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => WeatherBloc()),
         BlocProvider(create: (_) => BottomNavigationBarBloc()),
+        BlocProvider(create: (_) => LanguageSwitcherBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
