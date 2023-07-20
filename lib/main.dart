@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
 import 'package:weather_app/features/profile/profile_screen.dart';
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
 import 'package:weather_app/features/weather/weather_screen.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => WeatherBloc()),
+        BlocProvider(create: (_) => BottomNavigationBarBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -25,7 +27,6 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: 'weather',
         routes: {
-          //API KEY:: cc82f16ddd145bb55547d3f2cb6f37a0
           'weather': (_) => const WeatherScreen(),
           'profile': (_) => const ProfileScreen(),
         },

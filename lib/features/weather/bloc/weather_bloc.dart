@@ -7,6 +7,6 @@ part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(const WeatherInitialState()) {
-    on<SwitchLanguageEvent>((event, emit) => emit(NewLanguageState(event.isEnglish)));
+    on<ChangeLanguageEvent>((event, emit) => emit(NewLanguageState(event.isEnglish)));
   }
 }

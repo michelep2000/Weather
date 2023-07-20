@@ -1,9 +1,10 @@
-import 'package:flutter/gestures.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
 
 import '../../design/assets.dart';
+import '../../design/widgets/navigation_bar/bottom_navigation_bar.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -17,6 +18,34 @@ class WeatherScreen extends StatelessWidget {
           alignment: Alignment.topRight,
         ),
       ),
+      bottomNavigationBar: AnimatedSwitcher(
+        duration: Duration(milliseconds: 500),
+        child: CitiesBottomNavigationBar(),
+      ),
+    );
+  }
+}
+
+class CitiesSwiper extends StatefulWidget {
+  const CitiesSwiper({Key? key}) : super(key: key);
+
+  @override
+  _CitiesSwiperState createState() => _CitiesSwiperState();
+}
+
+class _CitiesSwiperState extends State<CitiesSwiper> {
+  @override
+  Widget build(BuildContext context) {
+    return Swiper(
+      itemBuilder: (BuildContext context, int index) {
+        return Image.network(
+          "https://via.placeholder.com/350x150",
+          fit: BoxFit.fill,
+        );
+      },
+      itemCount: 3,
+      pagination: const SwiperPagination(),
+      control: const SwiperControl(),
     );
   }
 }
@@ -88,7 +117,7 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
 
   void onLanguageTap(bool isEnglish) {
     BlocProvider.of<WeatherBloc>(context, listen: false).add(
-      SwitchLanguageEvent(isEnglish),
+      ChangeLanguageEvent(isEnglish),
     );
   }
 }
