@@ -1,31 +1,31 @@
-import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
-import 'package:weather_app/models/weather_custom_response.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:weather_app/models/weather_response.dart';
 
-class OpenWeatherService {
-  OpenWeatherService._privateConstructor();
+class OpenWeatherProvider {
+  static const String _apiKey = 'cc82f16ddd145bb55547d3f2cb6f37a0';
+  static const String _baseUrl = 'https://api.openweathermap.org';
 
-  static final OpenWeatherService _instance =
-      OpenWeatherService._privateConstructor();
+  final http.Client _httpClient;
 
-  factory OpenWeatherService() => _instance;
-  String apiKey = 'cc82f16ddd145bb55547d3f2cb6f37a0';
+  OpenWeatherProvider({http.Client? httpClient})
+      : _httpClient = httpClient ?? http.Client();
 
-
-  Future getWeather({
-    @required city,
+  Future<WeatherResponse> getWeather({
+    required String city
   }) async {
-    try {
 
-      final dio = Dio();
-      final response = await dio.get('api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apiKey');
+    final url = '$_baseUrl/data/2.5/forecast?q=$city&appid=$_apiKey';
 
-      return WeatherResponse.fromJson(response.data);
+    final response = await _httpClient.get(Uri.parse(url));
+
+    final result = WeatherResponse.fromJson(json.decode(response.body));
 
 
-    } catch (e) {
-      return WeatherCustomResponse(isOk: false, message: e.toString());
+    if (result.cod == '200') {
+      return result;
+    } else {
+      throw Exception('Error: code different to 200');
     }
   }
 }

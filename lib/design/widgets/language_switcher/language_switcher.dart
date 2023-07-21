@@ -23,6 +23,7 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ElevatedButton(
+                clipBehavior: Clip.antiAlias,
                 onPressed: () => onLanguageTap(true),
                 child: state.isEnglish
                     ? Image.asset(

@@ -3,10 +3,9 @@ part of 'weather_bloc.dart';
 @immutable
 abstract class WeatherEvent {}
 
-class ChangeLanguageEvent extends WeatherEvent {
-  final bool isEnglish;
+class LoadWeatherEvent extends WeatherEvent {
+  final String city;
 
-  ChangeLanguageEvent(this.isEnglish);
+  LoadWeatherEvent({this.city = 'paris'});
 }
-
 
