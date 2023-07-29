@@ -8,6 +8,6 @@ class WeatherRepositoryImplementation extends WeatherRepositoryBase {
   WeatherRepositoryImplementation(this._provider);
 
   @override
-  Future<WeatherResponse> getWeather(String city) =>
-      _provider.getWeather(city: city);
+  Future<WeatherResponse> getWeather(String city, String lang) =>
+      _provider.getWeather(city: city, lang: lang);
 }

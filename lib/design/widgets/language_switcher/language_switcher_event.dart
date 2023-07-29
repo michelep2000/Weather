@@ -4,7 +4,7 @@ part of 'language_switcher_bloc.dart';
 abstract class LanguageSwitcherEvent {}
 
 class ChangeLanguageEvent extends LanguageSwitcherEvent {
-  final bool isEnglish;
+  final String lang;
 
-  ChangeLanguageEvent(this.isEnglish);
+  ChangeLanguageEvent(this.lang);
 }

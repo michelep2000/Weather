@@ -2,20 +2,20 @@ part of 'language_switcher_bloc.dart';
 
 @immutable
 abstract class LanguageSwitcherState {
-  final bool isEnglish;
+  final String lang;
 
   const LanguageSwitcherState({
-    required this.isEnglish,
+    required this.lang,
   });
 }
 
 
 class LanguageSwitcherInitialState extends LanguageSwitcherState {
-  const LanguageSwitcherInitialState() : super(isEnglish: true);
+  const LanguageSwitcherInitialState() : super(lang: 'en');
 }
 
 class NewLanguageState extends LanguageSwitcherState {
-  final bool isEnglishChange;
-  const NewLanguageState(this.isEnglishChange) : super(isEnglish: isEnglishChange);
+  final String newLang;
+  const NewLanguageState(this.newLang) : super(lang: newLang);
 }
 

@@ -1,0 +1,24 @@
+{
+
+    "rome":"Rome",
+    "@rome":{
+        "description": "The city of Rome"
+    },
+
+    "paris":"Paris",
+    "@paris":{
+        "description": "The city of Paris"
+    },
+
+    "berlin":"Berlin",
+    "@berlin":{
+        "description": "The city of Berlin"
+    },
+
+    "profile":"Profile",
+        "@berlin":{
+            "description": "My Profile Tab"
+        }
+
+
+}

@@ -12,10 +12,11 @@ class OpenWeatherProvider {
       : _httpClient = httpClient ?? http.Client();
 
   Future<WeatherResponse> getWeather({
-    required String city
+    required String city,
+    required String lang,
   }) async {
 
-    final url = '$_baseUrl/data/2.5/forecast?q=$city&appid=$_apiKey';
+    final url = '$_baseUrl/data/2.5/forecast?lang=$lang&q=$city&appid=$_apiKey';
     print(url);
 
     final response = await _httpClient.get(Uri.parse(url));

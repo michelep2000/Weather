@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/design/widgets/language_switcher/language_switcher_bloc.dart';
-import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
-import 'package:weather_app/features/profile/profile_screen.dart';
-import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
-import 'package:weather_app/features/weather/weather_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:weather_app/l10n/l10n.dart';
 import 'package:weather_app/provider/open_weather_provider.dart';
 import 'package:weather_app/repository/weather_repository.dart';
 import 'package:weather_app/repository/weather_repository_implementation.dart';
+import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
+import 'package:weather_app/design/widgets/language_switcher/language_switcher_bloc.dart';
+import 'package:weather_app/features/profile/profile_screen.dart';
+import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
+import 'package:weather_app/features/weather/weather_screen.dart';
 
 void main() {
   final weatherProvider = OpenWeatherProvider();
@@ -33,15 +37,27 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => BottomNavigationBarBloc()),
         BlocProvider(create: (_) => LanguageSwitcherBloc()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute: 'weather',
-        routes: {
-          'weather': (_) => const WeatherScreen(),
-          'profile': (_) => const ProfileScreen(),
+      child: BlocBuilder<LanguageSwitcherBloc, LanguageSwitcherState>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            initialRoute: 'weather',
+            routes: {
+              'weather': (_) => const WeatherScreen(),
+              'profile': (_) => const ProfileScreen(),
+            },
+            locale: Locale(state.lang),
+            supportedLocales: L10n.all,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+          );
         },
       ),
     );

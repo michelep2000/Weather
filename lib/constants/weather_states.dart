@@ -47,24 +47,33 @@ extension WeatherStateMapperString on String? {
   OpenWeatherState toWeatherState() {
     switch (this) {
       case 'clear sky':
+      case 'cielo claro':
         return OpenWeatherState.CLEAR_SKY;
       case 'few clouds':
+      case 'algo de nubes':
         return OpenWeatherState.FEW_CLOUDS;
       case 'scattered clouds':
+      case 'nubes dispersas':
         return OpenWeatherState.SCATTERED_CLOUDS;
       case 'broken clouds':
+      case 'muy nuvoso':
         return OpenWeatherState.BROKEN_CLOUDS;
       case 'overcast clouds':
-        return OpenWeatherState.BROKEN_CLOUDS;
+      case 'nubes':
+        return OpenWeatherState.OVERCAST_CLOUDS;
       case 'light rain':
+      case 'lluvia ligera':
         return OpenWeatherState.SHOWER_RAIN;
       case 'shower rain':
         return OpenWeatherState.SHOWER_RAIN;
       case 'rain':
+      case 'lluvia':
         return OpenWeatherState.RAIN;
       case 'snow':
+      case 'nieve':
         return OpenWeatherState.SNOW;
       case 'mist':
+      case 'niebla':
         return OpenWeatherState.MIST;
       default:
         return OpenWeatherState.CLEAR_SKY;

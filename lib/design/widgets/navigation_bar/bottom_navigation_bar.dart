@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../assets.dart';
 
 class CitiesBottomNavigationBar extends StatefulWidget {
@@ -43,10 +43,12 @@ class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
   }
 
   List<BottomNavigationBarItem> bottomBarItems() {
+    final locale = AppLocalizations.of(context)!;
+
     List<BottomNavigationBarItem> menuList = <BottomNavigationBarItem>[
-      _bottomNavigationBarItem(Assets.franceFlag, 'Paris'),
-      _bottomNavigationBarItem(Assets.germanyFlag, 'Berlin'),
-      _bottomNavigationBarItem(Assets.italyFlag, 'Rome')
+      _bottomNavigationBarItem(Assets.franceFlag, locale.paris),
+      _bottomNavigationBarItem(Assets.germanyFlag, locale.berlin),
+      _bottomNavigationBarItem(Assets.italyFlag, locale.rome)
     ];
 
     return menuList;

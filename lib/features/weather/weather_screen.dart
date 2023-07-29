@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/design/widgets/language_switcher/language_switcher_bloc.dart';
 import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
 import 'package:weather_app/models/weather_response.dart';
@@ -17,18 +18,42 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  late int index;
+  late String lang;
+
   @override
   void initState() {
+    index = 0;
+    lang = 'en';
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final weatherBloc = BlocProvider.of<WeatherBloc>(context, listen: false);
 
-      weatherBloc.add(LoadWeatherEvent(city: getCityByIndex(0)));
+      weatherBloc.add(LoadWeatherEvent(city: getCityByIndex(0), lang: 'en'));
 
       BlocProvider.of<BottomNavigationBarBloc>(context, listen: false)
           .stream
-          .listen((event) {
-        weatherBloc.add(LoadWeatherEvent(city: getCityByIndex(event.index)));
-      });
+          .listen(
+        (event) {
+          index = event.index;
+
+          weatherBloc.add(
+            LoadWeatherEvent(city: getCityByIndex(event.index), lang: lang),
+          );
+        },
+      );
+
+      BlocProvider.of<LanguageSwitcherBloc>(context, listen: false)
+          .stream
+          .listen(
+        (event) {
+          lang = event.lang;
+
+          weatherBloc.add(
+            LoadWeatherEvent(city: getCityByIndex(index), lang: event.lang),
+          );
+        },
+      );
     });
     super.initState();
   }

@@ -24,8 +24,8 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
             children: [
               ElevatedButton(
                 clipBehavior: Clip.antiAlias,
-                onPressed: () => onLanguageTap(true),
-                child: state.isEnglish
+                onPressed: () => onLanguageTap('en'),
+                child: state.lang == 'en'
                     ? Image.asset(
                         Assets.usaFlag,
                         scale: languageImageScale,
@@ -35,15 +35,15 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
                         scale: languageImageScale,
                       ),
                 style: ButtonStyle(
-                  backgroundColor: getSelectedColor(state.isEnglish),
+                  backgroundColor: getSelectedColor(state.lang == 'en'),
                 ),
               ),
               const SizedBox(
                 width: 5.0,
               ),
               ElevatedButton(
-                onPressed: () => onLanguageTap(false),
-                child: state.isEnglish
+                onPressed: () => onLanguageTap('es'),
+                child: state.lang == 'en'
                     ? Image.asset(
                         Assets.spainBlackWhite,
                         scale: languageImageScale,
@@ -53,7 +53,7 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
                         scale: languageImageScale,
                       ),
                 style: ButtonStyle(
-                  backgroundColor: getSelectedColor(!state.isEnglish),
+                  backgroundColor: getSelectedColor(state.lang != 'en'),
                 ),
               ),
             ],
@@ -69,9 +69,9 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
         : MaterialStateProperty.all<Color>(Colors.white);
   }
 
-  void onLanguageTap(bool isEnglish) {
+  void onLanguageTap(String lang) {
     BlocProvider.of<LanguageSwitcherBloc>(context, listen: false).add(
-      ChangeLanguageEvent(isEnglish),
+      ChangeLanguageEvent(lang),
     );
   }
 }

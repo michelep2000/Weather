@@ -5,7 +5,8 @@ abstract class WeatherEvent {}
 
 class LoadWeatherEvent extends WeatherEvent {
   final String city;
+  final String lang;
 
-  LoadWeatherEvent({required this.city});
+  LoadWeatherEvent({required this.city, required this.lang});
 }
 
