@@ -18,6 +18,9 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       emit(WeatherLoadingSuccessState(weather));
 
     });
+
+
+
   }
 
 

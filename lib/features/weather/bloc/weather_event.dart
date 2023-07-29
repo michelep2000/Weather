@@ -6,6 +6,6 @@ abstract class WeatherEvent {}
 class LoadWeatherEvent extends WeatherEvent {
   final String city;
 
-  LoadWeatherEvent({this.city = 'paris'});
+  LoadWeatherEvent({required this.city});
 }
 

@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => WeatherBloc(context.read<WeatherRepositoryBase>())),
+        BlocProvider(
+            create: (_) => WeatherBloc(context.read<WeatherRepositoryBase>())),
         BlocProvider(create: (_) => BottomNavigationBarBloc()),
         BlocProvider(create: (_) => LanguageSwitcherBloc()),
       ],

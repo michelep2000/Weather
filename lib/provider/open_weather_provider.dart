@@ -16,8 +16,10 @@ class OpenWeatherProvider {
   }) async {
 
     final url = '$_baseUrl/data/2.5/forecast?q=$city&appid=$_apiKey';
+    print(url);
 
     final response = await _httpClient.get(Uri.parse(url));
+
 
     final result = WeatherResponse.fromJson(json.decode(response.body));
 

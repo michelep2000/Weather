@@ -6,5 +6,7 @@ abstract class BottomNavigationBarEvent {}
 class ChangeTabEvent extends BottomNavigationBarEvent {
   final int index;
 
-  ChangeTabEvent(this.index);
+  ChangeTabEvent({
+    required this.index,
+  });
 }

@@ -8,6 +8,8 @@ part 'bottom_navigation_bar_state.dart';
 class BottomNavigationBarBloc
     extends Bloc<BottomNavigationBarEvent, BottomNavigationBarState> {
   BottomNavigationBarBloc() : super(const BottomNavigationBarInitialState()) {
-    on<ChangeTabEvent>((event, emit) => emit(NewTabState(event.index)));
+    on<ChangeTabEvent>((event, emit) async {
+      emit(NewTabState(event.index));
+    });
   }
 }

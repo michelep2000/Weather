@@ -13,6 +13,7 @@ class CitiesBottomNavigationBar extends StatefulWidget {
 }
 
 class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,23 +21,19 @@ class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(
           builder: (_, state) {
-            return Material(
-              elevation: 10,
-              color: Colors.transparent,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(26),
-                child: BottomNavigationBar(
-                  backgroundColor: Colors.white,
-                  items: bottomBarItems(),
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  onTap: _onTapNavigationItem,
-                  currentIndex: state.index,
-                  selectedFontSize: 11,
-                  unselectedItemColor: Colors.grey,
-                  unselectedFontSize: 11,
-                  elevation: 5,
-                ),
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(26),
+              child: BottomNavigationBar(
+                backgroundColor: Colors.white.withOpacity(0.1),
+                items: bottomBarItems(),
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                onTap: _onTapNavigationItem,
+                currentIndex: state.index,
+                selectedFontSize: 11,
+                unselectedItemColor: Colors.red,
+                unselectedFontSize: 11,
+                elevation: 0,
               ),
             );
           },
@@ -73,6 +70,7 @@ class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
             style: const TextStyle(
               letterSpacing: 2.5,
               fontWeight: FontWeight.w400,
+              color: Colors.white,
             ),
           ),
         ],
@@ -82,7 +80,7 @@ class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
-          color: Colors.grey.shade200,
+          color: Colors.white.withOpacity(0.2),
         ),
         child: Column(
           children: [
@@ -96,7 +94,9 @@ class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
             Text(
               city,
               style: const TextStyle(
-                  letterSpacing: 2.5, fontWeight: FontWeight.bold),
+                  letterSpacing: 2.5,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ],
         ),
@@ -105,7 +105,12 @@ class _CitiesBottomNavigationBarState extends State<CitiesBottomNavigationBar> {
   }
 
   _onTapNavigationItem(int index) {
-    BlocProvider.of<BottomNavigationBarBloc>(context, listen: false)
-        .add(ChangeTabEvent(index));
+    BlocProvider.of<BottomNavigationBarBloc>(context, listen: false).add(
+      ChangeTabEvent(
+        index: index,
+      ),
+    );
   }
+
+
 }
