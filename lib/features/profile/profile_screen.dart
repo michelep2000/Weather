@@ -128,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 minimumSize: const Size.fromHeight(50),
                               ),
                               onPressed: buttonActive ? () {} : null,
-                              child: const Text('Send'),
+                              child: Text(locale.send),
                             )
                           ],
                         ),

@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 import '../../../models/my_profile.dart';
 
 part 'profile_event.dart';
+
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
@@ -16,7 +17,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   void _emailSetEvent(EmailSetEvent event, Emitter<ProfileState> emit) {
-    print(event.email);
     emit(state.copyWith(email: event.email));
   }
 
