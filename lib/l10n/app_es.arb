@@ -1,8 +1,12 @@
 {
-
-"rome":"Roma",
-"paris":"París",
-"berlin":"Berlín"
-"profile":"Perfíl",
-
+  "rome": "Roma",
+  "paris": "París",
+  "berlin": "Berlín",
+  "profile": "Perfíl",
+  "name": "Nombre Completo",
+  "birthday": "Fecha de Nacimiento",
+  "phone": "Móvil",
+  "city": "Ciudad",
+  "email": "E-mail",
+  "send": "Enviar"
 }

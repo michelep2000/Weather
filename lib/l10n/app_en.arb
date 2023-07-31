@@ -1,24 +1,24 @@
 {
-
-    "rome":"Rome",
-    "@rome":{
-        "description": "The city of Rome"
-    },
-
-    "paris":"Paris",
-    "@paris":{
-        "description": "The city of Paris"
-    },
-
-    "berlin":"Berlin",
-    "@berlin":{
-        "description": "The city of Berlin"
-    },
-
-    "profile":"Profile",
-        "@berlin":{
-            "description": "My Profile Tab"
-        }
-
-
+  "rome": "Rome",
+  "@rome": {
+    "description": "The city of Rome"
+  },
+  "paris": "Paris",
+  "@paris": {
+    "description": "The city of Paris"
+  },
+  "berlin": "Berlin",
+  "@berlin": {
+    "description": "The city of Berlin"
+  },
+  "profile": "Profile",
+  "@berlin": {
+    "description": "My Profile Tab"
+  },
+  "name": "Complete Name",
+  "birthday": "Birthday",
+  "phone": "Phone",
+  "city": "City",
+  "email": "E-mail",
+  "send": "Send"
 }

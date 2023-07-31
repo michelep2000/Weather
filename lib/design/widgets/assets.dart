@@ -6,4 +6,5 @@ class Assets {
   static const spainBlackWhite = "assets/spain_black_white.webp";
   static const usaFlag = "assets/usa_flag.png";
   static const usaBlackWhite = "assets/usa_black_white.png";
+  static const userPlaceholder = "assets/user_placeholder.webp";
 }
