@@ -20,18 +20,24 @@ class Profile {
   });
 
   factory Profile.fromJson(Map<String, dynamic> json) => Profile(
-    name: json["name"],
-    birthday: json["birthday"],
-    phone: json["phone"],
-    city: json["city"],
-    email: json["email"],
-  );
+        name: json["name"],
+        birthday: json["birthday"],
+        phone: json["phone"],
+        city: json["city"],
+        email: json["email"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "birthday": birthday,
-    "phone": phone,
-    "city": city,
-    "email": email,
-  };
+        "name": name,
+        "birthday": birthday,
+        "phone": phone,
+        "city": city,
+        "email": email,
+      };
+  
+  @override
+  String toString() {
+    return '$name|$email|$phone|$city|$birthday';
+  }
+
 }
