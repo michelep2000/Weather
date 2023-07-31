@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:weather_app/features/profile/bloc/profile_bloc.dart';
 
 import 'package:weather_app/l10n/l10n.dart';
 import 'package:weather_app/provider/open_weather_provider.dart';
@@ -12,6 +13,7 @@ import 'package:weather_app/design/widgets/language_switcher/language_switcher_b
 import 'package:weather_app/features/profile/profile_screen.dart';
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
 import 'package:weather_app/features/weather/weather_screen.dart';
+import 'package:weather_app/routes.dart';
 
 void main() {
   final weatherProvider = OpenWeatherProvider();
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (_) => WeatherBloc(context.read<WeatherRepositoryBase>())),
+        BlocProvider(create: (_) => ProfileBloc()),
         BlocProvider(create: (_) => BottomNavigationBarBloc()),
         BlocProvider(create: (_) => LanguageSwitcherBloc()),
       ],
@@ -44,11 +47,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            initialRoute: 'weather',
-            routes: {
-              'weather': (_) => const WeatherScreen(),
-              'profile': (_) => const ProfileScreen(),
-            },
+            initialRoute: Routes.weather,
+            routes: Routes.getRoutes(),
             locale: Locale(state.lang),
             supportedLocales: L10n.all,
             localizationsDelegates: const [
