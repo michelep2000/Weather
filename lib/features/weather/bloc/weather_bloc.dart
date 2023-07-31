@@ -4,7 +4,6 @@ import 'package:weather_app/models/weather_response.dart';
 import 'package:weather_app/repository/weather_repository.dart';
 
 part 'weather_event.dart';
-
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {

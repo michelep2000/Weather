@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../assets.dart';
+import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
+
+import '../assets.dart';
 
 class CitiesBottomNavigationBar extends StatefulWidget {
   const CitiesBottomNavigationBar({Key? key}) : super(key: key);

@@ -7,10 +7,11 @@ import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
 import 'package:weather_app/models/weather_response.dart';
 import 'package:weather_app/routes.dart';
+
+import '../../constants/weather_states.dart';
 import '../../design/widgets/assets.dart';
 import '../../design/widgets/language_switcher/language_switcher.dart';
 import '../../design/widgets/navigation_bar/bottom_navigation_bar.dart';
-import '../../constants/weather_states.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);

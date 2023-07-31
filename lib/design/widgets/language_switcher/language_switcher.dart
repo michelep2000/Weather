@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/design/assets.dart';
+import 'package:weather_app/design/widgets/assets.dart';
 import 'package:weather_app/design/widgets/language_switcher/language_switcher_bloc.dart';
 
 class LanguageSwitcher extends StatefulWidget {
