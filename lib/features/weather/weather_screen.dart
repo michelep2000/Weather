@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/design/widgets/language_switcher/language_switcher_bloc.dart';
 import 'package:weather_app/design/widgets/navigation_bar/bottom_navigation_bar_bloc.dart';
 import 'package:weather_app/features/weather/bloc/weather_bloc.dart';
 import 'package:weather_app/models/weather_response.dart';
+import 'package:weather_app/routes.dart';
+import '../../design/widgets/assets.dart';
 import '../../design/widgets/language_switcher/language_switcher.dart';
 import '../../design/widgets/navigation_bar/bottom_navigation_bar.dart';
 import '../../constants/weather_states.dart';
@@ -20,6 +24,7 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   late int index;
   late String lang;
+  late StreamSubscription subscription;
 
   @override
   void initState() {
@@ -31,7 +36,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
       weatherBloc.add(LoadWeatherEvent(city: getCityByIndex(0), lang: 'en'));
 
-      BlocProvider.of<BottomNavigationBarBloc>(context, listen: false)
+      subscription = BlocProvider.of<BottomNavigationBarBloc>(context, listen: false)
           .stream
           .listen(
         (event) {
@@ -57,6 +62,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
     });
     super.initState();
   }
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +79,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
           body: SafeArea(
             child: Stack(
               children: [
+                Align(
+                  child: profileWidget(context),
+                  alignment: Alignment.topLeft,
+                ),
                 const Align(
                   child: LanguageSwitcher(),
                   alignment: Alignment.topRight,
@@ -207,5 +221,31 @@ class _WeatherScreenState extends State<WeatherScreen> {
       case 2:
         return 'rome';
     }
+  }
+
+  Widget profileWidget(BuildContext context) {
+    return GestureDetector(
+        child: const Padding(
+          padding: EdgeInsets.all(12),
+          child: ClipOval(
+            child: Material(
+              elevation: 10.0,
+              child: CircleAvatar(
+                backgroundColor: Colors.white60,
+                radius: 35,
+                child: FadeInImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      'https://e7.pngegg.com/pngimages/348/800/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child.png',
+                      scale: 2),
+                  placeholder: AssetImage(Assets.userPlaceholder),
+                  width: 60,
+                  height: 60,
+                ),
+              ),
+            ),
+          ),
+        ),
+        onTap: () => Navigator.pushNamed(context, Routes.profile));
   }
 }
